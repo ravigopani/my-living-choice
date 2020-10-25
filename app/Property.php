@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
 use App\Updater;
 use App\PropertyCare;
+use App\PropertyGallery;
 use App\Care;
 
 class Property extends Model
@@ -17,6 +18,10 @@ class Property extends Model
 
     public function cares(){
         return $this->hasMany(PropertyCare::class, 'property_id', 'id');
+    }
+
+    public function gallery(){
+        return $this->hasMany(PropertyGallery::class, 'property_id', 'id');
     }
 
     public static function saveProperty($data,$id='')

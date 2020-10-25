@@ -73,6 +73,7 @@ Route::get('/blog/{id}','HomeController@singleBlog')->name('single-blog');
 
 Route::get('/properties-list','HomeController@propertiesList')->name('properties-list');
 Route::post('/properties-list-data','HomeController@propertiesListData')->name('properties-list-data');
+Route::get('/properties-single/{id}','HomeController@propertiesSingle')->name('properties-single');
 
 Route::get('/list-community','HomeController@listCommunity')->name('list-community');
 Route::post('/list-community','HomeController@postlistCommunity')->name('post-list-community');

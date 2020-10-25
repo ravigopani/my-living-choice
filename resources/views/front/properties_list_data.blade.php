@@ -29,30 +29,38 @@
                                     </div>
                                 </div>
                                 <div class="website-link">
-                                    <a class="green-btn " href="https://www.mylivingchoice.com/property/heritage-specialty-care/ ">View Profile</a>
+                                    <a class="green-btn " href="{{url('').'/properties-single/'.$val['id']}}">View Profile</a>
                                 </div>
                             </div>
                             <div class="d-flex">
                                 <div class="flex2">
                                     <ul class="gallery_container">
-                                        <li>
-                                            <div class="mlc_gallery_container">
-                                                <span class="mlc_gallery_close">
-                                                    <a data-fancybox="gallery" href="https://www.mylivingchoice.com/wp-content/uploads/2020/08/Heritage-R2H.2.jpg" rel="gallery7937">
-                                                        <img src="https://www.mylivingchoice.com/wp-content/uploads/2020/08/Heritage-R2H.2-150x150.jpg">
-                                                    </a>
-                                                </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="mlc_gallery_container">
-                                                <span class="mlc_gallery_close">
-                                                    <a data-fancybox="gallery" href="https://www.mylivingchoice.com/wp-content/uploads/2020/08/HeritageRehabEntrance.jpg" rel="gallery7937">
-                                                        <img src="https://www.mylivingchoice.com/wp-content/uploads/2020/08/HeritageRehabEntrance-150x150.jpg">
-                                                    </a>
-                                                </span>
-                                            </div>
-                                        </li>
+                                        @if(!empty($val['gallery']))
+                                            @foreach($val['gallery'] as $val2)
+                                                @if(file_exists(storage_path().'/propertyGallery/'.$val2['property_id'].'/'.$val2['file_path']))
+                                                <li>
+                                                    <div class="mlc_gallery_container">
+                                                        <span class="mlc_gallery_close">
+                                                            <a data-fancybox="gallery" href="{{URL('').'/get_image/propertyGallery/'.$val2['file_path'].'/'.$val2['property_id']}}" rel="{{$val2['id']}}" rel="gallery7937">
+                                                                <img src="{{URL('').'/get_image/propertyGallery/'.$val2['file_path'].'/'.$val2['property_id']}}" rel="{{$val2['id']}}">
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                                @else
+                                                    <li>
+                                                        <div class="mlc_gallery_container">
+                                                            <span class="mlc_gallery_close">
+                                                                <a data-fancybox="gallery" href="{{URL::asset('public/image/no_image.jpg')}}" rel="{{$val2['id']}}" rel="gallery7937">
+                                                                    <img src="{{URL::asset('public/image/no_image.jpg')}}" rel="{{$val2['id']}}">
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        @else
+                                        @endif
                                     </ul>
                                 </div>
                             </div>
@@ -66,7 +74,9 @@
                                     MyLivingChoice <b>{{$val['package']}}</b> Partner
                                 @endif
                             </div>
-                            <a class="details-btn" href="https://www.careinitiatives.org/heritage-specialty-care/" target="_blank">Visit Website</a>
+                            @if(!empty($val['website']))
+                                <a class="details-btn" href="{{$val['website']}}" target="_blank">Visit Website</a>
+                            @endif
                         </div>
                     </div>
                     <div class="clearfix"></div>

@@ -1,5 +1,4 @@
 @extends('front-layouts.master')
-
 @section('content')
     <div id="best-senior-living" class="best_senior_living_page">
         <section class="browser_list_bar" style="background-image: url(public/front/images/top-living-choices4-1.png);">
@@ -30,8 +29,7 @@
         </section>
         <section class="property_filter">
             <div class="container">
-                <div class="row no-gutters" id="property_data">
-                    
+                <div class="row no-gutters" id="property_data">                    
                 </div>
             </div>  
         </section>
@@ -72,5 +70,4 @@
         }
 
     </script>
-
 @endsection

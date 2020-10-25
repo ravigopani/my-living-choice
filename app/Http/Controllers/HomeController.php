@@ -10,6 +10,8 @@ use App\Property;
 use App\PropertyCare;
 use App\ContactUs;
 use App\ListCommunity;
+use App\PropertyGallery;
+use App\Amenity;
 
 class HomeController extends Controller
 {
@@ -58,14 +60,15 @@ class HomeController extends Controller
     public function propertiesList(Request $request)
     {
         $care = '';
-        if(!empty($request->care)){
-            $care = Care::where('id',$request->care)->first();
+        if(!empty($request->care_id)){
+            $care = Care::where('id',$request->care_id)->first();
         }
 
         $city = '';
-        if(!empty($request->city)){
-            $city = City::where('id',$request->city)->first();
+        if(!empty($request->city_id)){
+            $city = City::where('id',$request->city_id)->first();
         }
+
         return view('front.properties_list', compact('care','city'));
     }
 
@@ -92,7 +95,7 @@ class HomeController extends Controller
             // $propertiesObj->where('city_id', $request->city_id);
         }
 
-        $properties = $propertiesObj->with(['cares'])->orderBy('created_at','desc')->paginate(10);
+        $properties = $propertiesObj->with(['cares','gallery'])->orderBy('created_at','desc')->paginate(10);
 
         if($properties){
             $properties = $properties->toArray();
@@ -101,12 +104,37 @@ class HomeController extends Controller
         }
 
         // $property_cares = PropertyCare::where('property_id',2)->with(['care_detail'])->get()->toArray();
-        
+        // $property_gallery = PropertyGallery::where('property_id')->get()->toArray();
         // echo "<pre>";
         // print_r($properties);
         // exit();
 
         return view('front.properties_list_data', compact('properties','cares'));
+    }
+
+    public function propertiesSingle(Request $req, $id)
+    {
+        $propertiesObj = Property::select('properties.*','packages.package','cities.city','states.state')
+                        ->join('packages','properties.package_id','packages.id')
+                        ->join('cities','properties.city_id','cities.id')
+                        ->join('states','properties.state_id','states.id');
+
+        $property = $propertiesObj->with(['cares','gallery'])->first();
+
+        $amenities = Amenity::get()->toArray();
+        $cares = Care::get()->toArray();
+
+        if($property){
+            $property = $property->toArray();            
+        }else{
+            $property = [];
+        }
+
+        // echo "<pre>";
+        // print_r($amenities);
+        // exit();
+
+        return view('front.properties_single', compact('property','amenities','cares'));
     }
 
     public function listCommunity()
