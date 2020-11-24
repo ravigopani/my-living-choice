@@ -60,13 +60,13 @@ class HomeController extends Controller
     public function propertiesList(Request $request)
     {
         $care = '';
-        if(!empty($request->care_id)){
-            $care = Care::where('id',$request->care_id)->first();
+        if(!empty($request->care)){
+            $care = Care::where('id',$request->care)->first();
         }
 
         $city = '';
-        if(!empty($request->city_id)){
-            $city = City::where('id',$request->city_id)->first();
+        if(!empty($request->city)){
+            $city = City::where('id',$request->city)->first();
         }
 
         return view('front.properties_list', compact('care','city'));
@@ -262,8 +262,23 @@ class HomeController extends Controller
         return view('front.blog_single', compact('blog','blogs'));
     }
 
+    public function termsofservice()
+    {
+        return view('front.terms_of_service');
+    }
+
+    public function privacypolicy()
+    {
+        return view('front.privacy_policy');
+    }
+
     public function login()
     {
         return view('front.login');
+    }
+
+    public function maptest()
+    {
+        return view('maptest');
     }
 }

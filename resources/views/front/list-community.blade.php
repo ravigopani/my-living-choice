@@ -138,10 +138,16 @@
                         <h2 class="heading-title">Ready to get your property listed?</h2>
                     </div>
                     <div class="getstarted_btn col-lg-12 text-center">
-                        <a href="#get_listed" class="elementor-button-link elementor-button elementor-size-md" role="button">Get Started</a>
+                        <a href="javascript:void(0)" class="elementor-button-link elementor-button elementor-size-md" role="button" onclick="goToTop()">Get Started</a>
                     </div>
                 </div>
             </div>
         </section>
     </div>  
+
+    <script type="text/javascript">
+        function goToTop(){
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
 @endsection

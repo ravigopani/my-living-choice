@@ -21,6 +21,12 @@
                         <li class="footer-nav-item">
                             <a class="footer-nav-link" href="{{url('').'/contact-us'}}">Contact Us</a>
                         </li>
+                        <li class="footer-nav-item">
+                            <a class="footer-nav-link" href="{{url('').'/terms-of-service'}}">Terms of Service</a>
+                        </li>
+                        <li class="footer-nav-item">
+                            <a class="footer-nav-link" href="{{url('').'/privacy-policy'}}">Privacy Policy</a>
+                        </li>
                     </ul>
                     <!-- Links -->
                 </div>

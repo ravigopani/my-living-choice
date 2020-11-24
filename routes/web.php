@@ -81,6 +81,11 @@ Route::get('/about','HomeController@about')->name('about');
 Route::get('/contact-us','HomeController@contactus')->name('contact-us');
 Route::post('/contact-us','HomeController@postContactUs')->name('post-contact-us');
 
+Route::get('/terms-of-service','HomeController@termsofservice')->name('terms-of-service');
+Route::get('/privacy-policy','HomeController@privacypolicy')->name('privacy-policy');
+
+Route::get('/maptest','HomeController@maptest');
+
 Route::get('/login','HomeController@login');
 /*---------- END - Front Routes ----------*/
 
