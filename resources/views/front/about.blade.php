@@ -1,6 +1,12 @@
 @extends('front-layouts.master')
 
 @section('content')
+    <style type="text/css">
+        .img-fluid{
+            /*height: 100% !important;*/
+            width: 100% !important;
+        }
+    </style>
     <div id="aboutus" class="aboutus_page">
         <section class="aboutus_title_bar" style="background-image: url(public/front/images/Layer-28.png);">
             <div class="container">
@@ -85,8 +91,7 @@
                             <h1 class="heading-title">Our Experts Want to Help You <br> Learn.</h1>
                         </div>
                     </div>
-                    <div class="row homepage-blog-section ">
-
+                    <div class="row homepage-blog-section">
                         @if(!empty($blogs))
                             @foreach($blogs as $blog)
                                 <div class="col-lg-3">
@@ -102,7 +107,7 @@
                                         </a>
                                         <div class="post_text">
                                             <h3 class="post_title">
-                                                <a href="#"> {{$blog['short_description']}}</a>
+                                                <a href="{{url('').'/blog/'.$blog['id']}}"> {{$blog['short_description']}}</a>
                                             </h3>
                                             <div class="post_meta-data">
                                                 <span class="post-date"> {{date('F d, Y', strtotime($blog['created_at']))}}</span>

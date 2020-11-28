@@ -85,6 +85,7 @@ Route::get('/terms-of-service','HomeController@termsofservice')->name('terms-of-
 Route::get('/privacy-policy','HomeController@privacypolicy')->name('privacy-policy');
 
 Route::get('/maptest','HomeController@maptest');
+Route::get('/maptest1','HomeController@maptest1');
 
 Route::get('/login','HomeController@login');
 /*---------- END - Front Routes ----------*/

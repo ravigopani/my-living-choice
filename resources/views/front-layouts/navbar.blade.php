@@ -3,7 +3,7 @@
         <!--Navbar-->
         <nav class="navbar navbar-expand-lg px-0 custom_menu">
             <!-- Navbar brand -->
-            <a class="navbar-brand px-0 mr-0" href="#">
+            <a class="navbar-brand px-0 mr-0" href="{{url('')}}">
                 <img class="img-fluid" src="{{URL::asset('public/front/images/My-Living-Choice-Logo.png')}}"  alt="My-Living-Choice-Logo">
             </a>           
             <!-- flyout menu icon -->

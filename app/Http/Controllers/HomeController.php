@@ -26,7 +26,8 @@ class HomeController extends Controller
         $cities = City::select('cities.*','states.state')
                         ->join('states','cities.state_id','states.id')
                         ->get()->toArray();
-        return view('front.index', compact('cares','cities'));
+        $blogs = Blog::where('status','A')->take(4)->latest()->get()->toArray();
+        return view('front.index', compact('cares','cities','blogs'));
     }
 
     public function bestSeniorLiving()
@@ -255,10 +256,6 @@ class HomeController extends Controller
             $blogs = [];
         }
 
-        // echo "<pre>";
-        // print_r($blogs);
-        // exit();
-
         return view('front.blog_single', compact('blog','blogs'));
     }
 
@@ -280,5 +277,10 @@ class HomeController extends Controller
     public function maptest()
     {
         return view('maptest');
+    }
+
+    public function maptest1()
+    {
+        return view('maptest1');
     }
 }

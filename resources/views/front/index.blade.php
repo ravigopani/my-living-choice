@@ -1,6 +1,12 @@
 @extends('front-layouts.master')
 
 @section('content')
+    <style type="text/css">
+        .img-fluid{
+            /*height: 100% !important;*/
+            width: 100% !important;
+        }
+    </style>
     <div id="home" class="home_page">
        <section class="home_banner">
             <div class="container">
@@ -51,7 +57,7 @@
                                 <p>My Living Choice can help you find the best new home for you with our list of pre-vetted and reputable communities</p>
                             </div>
                             <div class="br_block_link">
-                                <a class="br_comm_link" href="#">Browse Top Communities</a>
+                                <a class="br_comm_link" href="{{url('').'/best-senior-living'}}">Browse Top Communities</a>
                             </div>
                             <a class="trust_cm_link" href="#">Learn why you can trust our certified communities</a>
                         </div>
@@ -65,7 +71,7 @@
                                 <p>Don’t ignore the thousands who visit My Living Choice looking for their next home. Create or claim your profile today.</p>
                             </div>
                             <div class="br_block_link">
-                                <a class="br_comm_link" href="#">Claim Your Community</a>
+                                <a class="br_comm_link" href="{{url('').'/list-community'}}">Claim Your Community</a>
                             </div>
                             <a class="trust_cm_link" href="#">Learn why you should join My Living Choice</a>
                         </div>
@@ -145,7 +151,7 @@
                     </div>
                     <div class="col-lg-6 my-auto">
                             <div class="browse_comm_btn">
-                                <a href="#browse" class="button-link" role="button">
+                                <a href="javascript:void(0)" onclick="goToTop()" class="button-link" role="button">
                                     <span class="content-wrapper">
                                         <span class="button-text">Browse Communities</span>
                                      </span>
@@ -163,76 +169,38 @@
                     </div>
                 </div>
                 <div class="row homepage-blog-section ">
-                    <div class="col-lg-3">
-                        <article class="post_article">
-                            <a class="post_thumbnail_link" href="#">
-                                <div class="post_thumbnail">
-                                    <img class="img-fluid" src="{{URL::asset('public/front/images/shutterstock_1672461877.jpg')}}" alt="post_img"/>
-                                </div>
-                            </a>
-                            <div class="post_text">
-                                <h3 class="post_title">
-                                    <a href="#"> Fall 2020: What it Means to Shelter (and Age) in Place</a>
-                                </h3>
-                                <div class="post_meta-data">
-                                    <span class="post-date"> July 29, 2020</span>
-                                </div>
+                    @if(!empty($blogs))
+                        @foreach($blogs as $blog)
+                            <div class="col-lg-3">
+                                <article class="post_article">
+                                    <a class="post_thumbnail_link" href="#">
+                                        <div class="post_thumbnail">
+                                            @if(file_exists(storage_path().'/blogPicture/'.$blog['image']) && !empty($blog['image']))
+                                                <img src="{{URL('').'/get_image/blogPicture/'.$blog['image']}}" class="img-fluid" alt="Blog Image">
+                                            @else
+                                                <img src="{{URL::asset('public/image/no_image.jpg')}}" class="img-fluid" alt="No image found">
+                                            @endif
+                                        </div>
+                                    </a>
+                                    <div class="post_text">
+                                        <h3 class="post_title">
+                                            <a href="{{url('').'/blog/'.$blog['id']}}"> {{$blog['short_description']}}</a>
+                                        </h3>
+                                        <div class="post_meta-data">
+                                            <span class="post-date"> {{date('F d, Y', strtotime($blog['created_at']))}}</span>
+                                        </div>
+                                    </div>
+                                </article>                         
                             </div>
-                        </article>                         
-                    </div>
-                    <div class="col-lg-3">
-                        <article class="post_article">
-                            <a class="post__thumbnail__link" href="#">
-                                <div class="post_thumbnail">
-                                    <img class="img-fluid" src="{{URL::asset('public/front/images/shutterstock_321788432.jpg')}}" alt="post_img"/>
-                                </div>
-                            </a>
-                            <div class="post_text">
-                                <h3 class="post_title">
-                                    <a href="#">Hosting a Socially Distanced Ice Cream Social for Seniors</a>
-                                </h3>
-                                <div class="post_meta-data">
-                                    <span class="post-date">July 29, 2020</span>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-lg-3">
-                        <article class="post_article">
-                            <a class="post__thumbnail__link" href="#">
-                                <div class="post_thumbnail">
-                                    <img class="img-fluid" src="{{URL::asset('public/front/images/shutterstock_1121594621.jpg')}}" alt="post_img"/>
-                                </div>
-                            </a>
-                            <div class="post_text">
-                                <h3 class="post_title">
-                                    <a href="#">Best Summer Activities for Seniors</a>
-                                </h3>
-                                <div class="post_meta-data">
-                                    <span class="post-date">July 29, 2020</span>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-lg-3">
-                        <article class="post_article">
-                            <a class="post__thumbnail__link" href="#">
-                                <div class="post_thumbnail">
-                                    <img class="img-fluid" src="{{URL::asset('public/front/images/shutterstock_1208702593.jpg')}}" alt="post_img"/>
-                                </div>
-                            </a>
-                            <div class="post_text">
-                                <h3 class="post_title">
-                                    <a href="#">Best Kansas City Attractions for Seniors</a>
-                                </h3>
-                                <div class="post_meta-data">
-                                    <span class="post-date">July 29, 2020</span>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
            </div>
        </section>
     </div>
+    <script type="text/javascript">
+        function goToTop(){
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
 @endsection

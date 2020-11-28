@@ -2,7 +2,7 @@
     @if(!empty($blogs['data']))
         @foreach($blogs['data'] as $blog)
             <article class="post_article">
-                <a class="post__thumbnail__link" href="#">
+                <a class="post__thumbnail__link" href="javascript:void(0)">
                     <div class="post__thumbnail">
                         @if(file_exists(storage_path().'/blogPicture/'.$blog['image']) && !empty($blog['image']))
                             <img src="{{URL('').'/get_image/blogPicture/'.$blog['image']}}" class="img-fluid" alt="Blog Image">
@@ -13,7 +13,7 @@
                 </a>
                 <div class="post__text">
                     <h4 class="post__title">
-                        <a href="#">{{$blog['short_description']}}</a>
+                        <a href="{{url('').'/blog/'.$blog['id']}}">{{$blog['short_description']}}</a>
                     </h4>
                     <div class="post__meta-data">
                         <span class="post-date">{{date('F d, Y', strtotime($blog['created_at']))}}</span>
