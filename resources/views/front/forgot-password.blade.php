@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	@include('front-layouts.header')
+    @include('front-layouts.header')
 </head>
 <body id="page-top"> 
     <div class="body">
@@ -19,32 +19,27 @@
 
         <div id="login" class="login_page d-flex" style="background-image: url(public/front/images/login-bg.jpg);">
             <div class="container align-self-center">
-                <div class="row no-gutters">
+                <div class="row no-gutters justify-content-center">
                     <div class="login_form_wrapper">
                         <div class="form-heading-block text-center">
-                            <h1 class="heading-title">Login Your Acount</h1>
+                            <h1 class="heading-title">Forgot Password</h1>
                         </div>
                         @if(Session::has('errors'))
-                            <p class="wppb-warning">
-                                <b>ERROR:</b> The password you entered is incorrect. <a href="{{url('').'/forgotPassword'}}">Lost your password?</a>
-                            </p>
+                            <p class="wppb-warning">The email address entered wasn't found in the database! Please check that you entered the correct email address.</p>
                         @endif
-                        <div id="wppb-login-wrap" class="wppb-user-forms">
-                            <form name="loginform" id="loginform" method="POST" action="{{ route('login') }}"> 
+                        <div id="login-wrap" class="login-user-forms">
+                            <form enctype="multipart/form-data" method="post" id="recover-password" class="user-form" action="{{ route('password.email') }}">
                                 @csrf
-                                <p class="login-username">
-                                    <input id="email" type="email" class="input" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
+                                <p class="form-title">Please enter your username or email address.<br>You will receive a link to create a new password via email.</p>
+                                <ul>
+                                    <li class="form-field username-email">
+                                        <input class="text-input" name="email" type="email" id="email" value="" placeholder="Username or E-mail" required>
+                                    </li><!-- .email -->
+                                </ul>
+                                <p class="form-submit">
+                                    <input name="recover_password" type="submit" id="recover-password-button" class="submit button" value="Get New Password">
                                 </p>
-                                <p class="login-password">
-                                    <input id="password" type="password" class="input" name="password" placeholder="Password" required>
-                                </p>
-                                <p class="login-submit">
-                                    <input type="submit" name="wp-submit" id="wppb-submit" class="button button-primary" value="Login">
-                                </p> 
                             </form>
-                            <p class="login-register-lost-password text-center">
-                                <a href="{{url('').'/forgotPassword'}}">Forgot your password?</a>
-                            </p>
                         </div>
                     </div>
                 </div>

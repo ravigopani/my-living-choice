@@ -40,6 +40,7 @@
     }
 ?>
 
+@if(!empty($blogs['data']))
 <nav class="blog-pagination" role="navigation" aria-label="Pagination">
     <a class="page-numbers prev {{!empty($prev_page)?'paginate_button pointer':'disabled not-allowed'}}" data-page="{{!empty($prev_page)?$prev_page:''}}">&lt;</a>
     @php 
@@ -54,6 +55,7 @@
     @endfor
     <a class="page-numbers next {{!empty($next_page)?'paginate_button pointer':'disabled not-allowed'}}" data-page="{{!empty($next_page)?$next_page:''}}">&gt;</a>		
 </nav>
+@endif
 
 <script type="text/javascript">
     $('.paginate_button').click(function(){

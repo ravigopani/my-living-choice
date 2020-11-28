@@ -12,6 +12,7 @@ use App\ContactUs;
 use App\ListCommunity;
 use App\PropertyGallery;
 use App\Amenity;
+use App\Tag;
 
 class HomeController extends Controller
 {
@@ -58,6 +59,22 @@ class HomeController extends Controller
         return view('front.best_sinior_living_data', compact('cities','cares','properties'));   
     }
 
+    public function search(Request $request)
+    {
+        $properties = Property::select('properties.id','properties.name','properties.latitude','properties.longitude')->get()->toArray();
+
+        $lat_lng_array = [];
+        if(!empty($properties)){
+            foreach ($properties as $key => $value) {
+                $lat_lng_array[] = ['lat'=>$value['latitude'],'lng'=>$value['longitude']];
+            }
+        }
+        // echo "<pre>";
+        // print_r($lat_lng_array);
+        // exit();
+        return view('maptest1',compact('properties','lat_lng_array'));
+    }
+
     public function propertiesList(Request $request)
     {
         $care = '';
@@ -86,14 +103,14 @@ class HomeController extends Controller
         $propertiesObj = Property::select('properties.*','packages.package')
                         ->join('packages','properties.package_id','packages.id');
 
-        if(!empty($request->care_id)){
+        if(!empty($request->care)){
             $propertiesObj->whereHas('cares', function ($propertiesObj) use($request) {
-                $propertiesObj->where('care_id', $request->care_id);
+                $propertiesObj->where('care_id', $request->care);
             });
         }
 
-        if(!empty($request->city_id)){
-            // $propertiesObj->where('city_id', $request->city_id);
+        if(!empty($request->city)){
+            // $propertiesObj->where('city_id', $request->city);
         }
 
         $properties = $propertiesObj->with(['cares','gallery'])->orderBy('created_at','desc')->paginate(10);
@@ -206,12 +223,14 @@ class HomeController extends Controller
     public function blog(Request $req)
     {
         $top_articles = Blog::where('status','A')->take(4)->latest()->get()->toArray();
-        return view('front.blog', compact('top_articles'));
+        $tags = Tag::get()->toArray();
+        $tag = !empty($req->tag) ? $req->tag : '';
+        return view('front.blog', compact('top_articles','tags','tag'));
     }
 
     public function blogListData(Request $request)
     {
-        $blog_obj = Blog::where('status','A');
+        $blog_obj = Blog::select('blogs.*')->where('status','A');
 
         $search = !empty($request->search) ? $request->search : '';
         // $request->session()->put('search_blog', $search);
@@ -224,7 +243,12 @@ class HomeController extends Controller
             });
         }
 
-        $blogs = $blog_obj->orderBy('created_at','desc')->paginate(5);
+        if(!empty($request->tag)){
+            $blog_obj->join('blog_tags','blogs.id','=','blog_tags.blog_id')
+            ->where('blog_tags.tag_id',$request->tag);
+        }
+
+        $blogs = $blog_obj->orderBy('blogs.created_at','desc')->paginate(5);
 
         if($blogs){
             $blogs = $blogs->toArray();
@@ -272,6 +296,11 @@ class HomeController extends Controller
     public function login()
     {
         return view('front.login');
+    }
+
+    public function forgotPassword()
+    {
+        return view('front.forgot-password');
     }
 
     public function maptest()

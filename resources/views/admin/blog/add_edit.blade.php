@@ -21,6 +21,15 @@
 
 	@php 
 		$id = isset($blog) ? '/'.$blog->id : '';
+		$checked_tags = [];
+		if(!empty($id))
+		{
+	        if(!empty($blog_tags)){
+	        	foreach ($blog_tags as $value) {
+	        		$checked_tags[] =  $value['tag_id'];
+	        	}
+	        }
+	    }
 	@endphp
 
 	<form id="form_id_common" class="{{isset($blog)?'edit':'add'}}" action="{{url(\Config::get('constants.ADMIN_URL'))}}/blog{{$id}}" method="POST" enctype="multipart/form-data">
@@ -107,8 +116,27 @@
 						?>
 					</div>
 				</div>
-				
-
+				<div class="row form-group" style="margin-top: 15px;">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label>Tags : <span class="text-danger">*</span></label>
+							<select class="form-control" id="tags" name="tags[]" multiple required>
+								@if(!empty($tags))
+									@foreach($tags as $val)
+										@if(in_array($val['id'], $checked_tags))
+											<option value="{{$val['id']}}" selected>{{$val['tag']}}</option>
+										@else
+											<option value="{{$val['id']}}">{{$val['tag']}}</option>
+										@endif
+									@endforeach
+								@endif
+							</select>
+							@error('tags')
+							    <label id="tags-error" class="validation-error-label" for="tags">{{ $message }}</label>
+							@enderror
+						</div>
+					</div>
+				</div>
 				<br/>
 				<div class="text-right">
 					<button type="button" id="submit_btn_id_common" class="btn btn-xs btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
@@ -119,7 +147,6 @@
 
     <script type="text/javascript">
     	validateFormByFormId('form_id_common');
-
     	ClassicEditor
 		.create( document.querySelector( '#editor' ), {
 			// toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
@@ -130,6 +157,12 @@
 		.catch( err => {
 			console.error( err.stack );
 		} );
+
+		$(function(){
+			$("#tags").select2().on("select2:close", function (e) {
+	            $(this).valid();
+	        });
+		});
     </script>
 
 @endsection

@@ -127,7 +127,7 @@ a, a:hover, a:focus, button, button:hover {
 ul, ol, li {
 	margin: 0;
 	padding: 0;
-	/* list-style: none; */
+	list-style: none;
 }
 
 .space10 {
@@ -636,14 +636,14 @@ input:focus {
 }
 
 .certified_bar_content{
-	width: 33%;
+	width: 40%;
 	text-align: center;
 	padding: 10px;
 }
 .certified_text_content{
-	width: 67%;
+	width: 60%;
 	margin: auto;
-	padding: 50px 0px 0px 50px; 
+	padding: 10px;
 }
 
 .certified_block_title{
@@ -986,9 +986,6 @@ li.s-twitter {
 	line-height: 1;
 	padding-bottom: 20px;
 }
-.login-user-forms ul li{
-	list-style: none;
-}
 
 #loginform .login-username input, #recover-password .username-email input{
 	width: 100%;
@@ -1265,16 +1262,14 @@ li.s-twitter {
 }
 
 .article_wrapper .post__thumbnail__link{
-	/* margin-right: 25px; */
+	margin-right: 25px;
 	flex-shrink: 0;
-    /* width: 25%; */
+    width: 25%;
 	position: relative;
 	display: block;
 
 }
-.post__text{
-	margin-left: 25px;
-}
+
 
 
 .article_wrapper .post__title a {
@@ -1737,12 +1732,10 @@ li.s-twitter {
 	margin-bottom: 20px;
 }
 
-/* .img_box_wrapper{
-	padding: 10px;
-} */
-.elementor-element-populated{
+.img_box_wrapper{
 	padding: 10px;
 }
+
 .img_box_wrapper .box_icon{
 	width: 31.5%;
 	margin: auto;
@@ -1945,7 +1938,7 @@ li.s-twitter {
     line-height: 22px !important;
     margin-bottom: 10px !important;
 	margin-top: 15px !important;
-	font-size: 25px !important;
+	font-size: 25px!Important;
 	font-weight: 500!important;
 	font-family: "Roboto", Sans-serif!important;
 }
@@ -2374,117 +2367,8 @@ h3.detail-address {
 	font-size: 25px;
 }
 
-.wppb-error, .wppb-warning {
-	font-size: 18px;
-    padding: 6px 9px;
-    margin: 0 auto 25px;
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    background: #ffebe8;
-    border: 1px solid #C00;
-}
-
-.wppb-error a:hover, .wppb-warning a:hover {
-    color: #007acc !important;
-    text-decoration: underline;
-}
-
-.wppb-error a, .wppb-warning a {
-    color: #007acc !important;
-}
-/* ---------- blog_02 page css -------- */
 
 
-.avada-page-titlebar-wrapper{
-	background-color:  #f6f6f6;
-	border:solid 1px #d2d3d4;
-}
-.fusion-page-title-bar{
-	background-image: url("../images/blog-02-page_title_bg.png");
-	background-size: cover;
-}
-.fusion-page-title-bar-breadcrumbs{
-	padding: 0px 30px;
-}
-.fusion-page-title .row{
-	height: 89px;
-}
-.fusion-page-title-wrapper h1{
-	font-size: 18px;
-	color: white;
-}
-.elementor-widget-container{
-	padding-top: 40px;
-	margin-bottom: 20px;
-	width: 100%;
-}
-.elementor-page-title{
-	margin-bottom: 20px;
-	width: 100%;
-}
-.elementor-widget-title h1{
-	line-height: 1;
-	font-size: 1.5em;
-	color: #0c0c0c;
-}
-.elementor-element-populated{
-	padding: 10px;
-}
-.area-tetxt{
-	margin-bottom: 20px;
-	width: 100%;
-	line-height: 1.5;
-	
-}
-.area-tetxt p{
-	margin: 1rem 0px;
-}
-.area-tetxt p span{
-	font-weight: 400;
-	color: #0c0c0c;
-	font-size: 14px;
-}
-.area-tetxt ul , .recent-posts ul li{
-	margin: 1rem 0px;
-	padding-left: 40px;
-
-}
-.area-tetxt ul li span{
-	font-weight: 400;
-	color: #0c0c0c;
-	font-size: 14px;
-}
-.area-tetxt h2{
-	font-size: 30px;
-	color: #333333;
-	line-height: 1.5;
-	margin-bottom: 1.1em;
-}
-.area-tetxt h3{
-	margin: 1em 0px;
-	font-size: 1.17em;
-    color: #0c0c0c;
-}
-.elementor-widget{
-	padding-bottom: 40px;
-}
-.recent-link{
-	
-	padding-left: 20px;
-}
-.recent-link .row .col-md-6 a{
-	list-style-type: armenian;
-
-}
-.recent-posts h5{
-	color: #465257;
-	line-height: 1.5;
-	font-size: 26px !important;
-}
-.area-tetxt ul li{
-	list-style: inherit;
-}
 
 
 
@@ -2735,129 +2619,5 @@ h3.detail-address {
 	}
 }
 
-/* ==========   I have done the changed from this comment  ======== */
 
 
-
- /*  
-	ul lu ol  remove  css  => list-style : none
-
-   add css ===>    blog_02 page css
-
-
-/* 
-<======== list-community.html ========>
- certified_bar_content  => width=40% = =>33%
- certified_text_content => width=60% = =>67%
- img_box_wrapper padding => 10px remove
-class aad => elementor-element-populated => padding : 10px; 
-class change =>listing_features => row => col-md-4
-
-
-<=========== aboutus.html ======>
-
-class  aad => .our_goal => row align-items-center
- class => .our_goal => row => col-md-5 & col-md-7
- class aad => expert_help row => col-md-6 & col-lg-3
-
-<========= contactus.html =======>
-
-
-<======== blog.html ========>
-
-blog-conten  => row => col-lg-8 => add div row => col-md-3 & col-md-9
-class aad => post__text :margin-left:25px
-remove   =>.article_wrapper .post__thumbnail__link   margin-right: 25px; &  width: 25%;
-
-
-<========= login.html =======>
- add css =>login-user-forms ul li => list-style: none;
-}
-form-row
- */
-@media only screen and (max-width: 456px){
-	.form-row .col-sm-6{
-		width: 100% !important;
-		flex: 100%;
-	} 
-}
-@media only screen and (max-width: 576px){
-	 .form-row .col-sm-6{
-		 float: 50%T;
-		 width: 50% !important;
-	 }
-
-}
-@media only screen and (max-width: 799px){
-	.property_filter ul li{
-		flex-basis: calc(100%);
-	}
-}
-@media (max-width: 767px){
-	.certified_bar_content{
-		width: 100% !important;
-	}
-	.certified_text_content{
-		width: 100%;
-		text-align: start;
-		
-	}
-	.aboutus_title_bar .block_title{
-		padding: 70px 0px 70px 0px;
-	}
-	.goal_img_box ,.our_goal_title{
-		text-align: center;
-	}
-	.icons.abouticon1::before ,.icons.abouticon2::before ,.icons.abouticon3::before{
-		width: 100%;
-		top: 0px;
-	}
-	.goal_img_box p.icons{
-		padding: 130px  10px 0px 10px;
-	}
-	.search_form_wrapper .search-form__submit{
-		font-size: 14px;
-	}
-	.bar_title p{
-		font-size: 16px;
-		line-height: 22px;
-	}
-	.our_goal_title h2 ,.aboutus_title h2 , .banner_title h1{
-		font-size: 20px;
-	}
-	.login_form_wrapper{
-		width: 80% !important;
-	}
-	
-}
-@media only screen and (max-width: 1024px){
-	.our_goal_title h2 ,.aboutus_title h2{
-		font-size: 25px;
-	}
-	.goal_img_box p.icons{
-		font-size: 18px;
-	}
-	.section_description .subtitle{
-		font-size: 16px;
-	}
-	.bar_title p{
-		font-size: 22px;
-		line-height: 30px;
-	}
-	.sidebar{
-		margin: 50px 0px 0px 0px;
-	}
-	.sidebar_wrapper{
-		margin-left: 0px;
-	}
-	.banner_title h1 {
-		font-size: 22px;
-	}
-	.has-sidebar .col-lg-8 , .has-sidebar .col-lg-4{
-		flex-basis: 100%;
-		max-width: 100%;
-	}
-	.login_form_wrapper{
-		width: 50%;
-	}
-}

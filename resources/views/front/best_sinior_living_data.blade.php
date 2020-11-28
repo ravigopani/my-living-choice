@@ -34,7 +34,7 @@
                                 @endif
                             @endforeach
                             @if($check)
-                                <li><a href="{{url('').'/properties-list?care_id='.$val3['care_id'].'&city_id='.$val3['city_id']}}">Top {{$val2['care']}} in {{$val1['city']}}</a></li>
+                                <li><a href="{{url('').'/properties-list?care='.$val3['care_id'].'&city='.$val3['city_id']}}">Top {{$val2['care']}} in {{$val1['city']}}</a></li>
                             @endif
                         @endforeach
                     @endif

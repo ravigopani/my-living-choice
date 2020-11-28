@@ -45,7 +45,7 @@
                         <a class="nav-link pl-0" href="{{url('').'/best-senior-living'}}">Best Senior Living</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Find Properties</a>
+                        <a class="nav-link" href="{{url('').'/search'}}">Find Properties</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('').'/list-community'}}">List Your Community</a>
@@ -71,28 +71,33 @@
                 <!-- Links -->
                 <ul class="_mobile_menu"  id="mobile_nav_menu">
                     <li class="nav-item item-active">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="{{url('')}}">Home</a>
+                    </li>
+                    <li class="nav-item item-active">
+                        <a class="nav-link" href="{{url('').'/best-senior-living'}}">Best Senior Living</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="{{url('').'/search'}}">Find Properties</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Find Properties</a>
+                        <a class="nav-link" href="{{url('').'/list-community'}}">List Your Community</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">List Your Community</a>
+                        <a class="nav-link" href="{{url('').'/about'}}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
+                        <a class="nav-link" href="{{url('').'/contact-us'}}">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="{{url('').'/blog'}}">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('').'/login'}}">Login</a>
                     </li>
                 </ul>
                 <!-- Links -->
              </div>
             <!-- mobile navigation -->
-            
         </nav>
         <!--/.Navbar-->
     </div>

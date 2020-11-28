@@ -6,15 +6,19 @@
                 <div class="property-list">
                     <div class="first-section clearfix">
                         <div class="property-list-box">
-                            <a href="https://www.mylivingchoice.com/propertyheritage-specialty-care">
-                                <img src="https://www.mylivingchoice.com/wp-content/uploads/2020/08/Care-Initiatives-Heritage.jpg" alt="logo">
+                            <a href="{{url('').'/properties-single/'.$val['id']}}">
+                                @if(!empty($val['logo_image']) && file_exists(storage_path().'/propertyImage/'.$val['logo_image']))
+                                    <img src="{{URL('').'/get_image/propertyImage/'.$val['logo_image']}}" alt="{{$val['name']}}" alt="logo">
+                                @else
+                                    <img src="{{url('').'/public/image/no_img.png'}}" alt="logo">
+                                @endif
                             </a>
                         </div>
                         <div class="property-info">
                             <div class="property-headerinfo clearfix">
                                 <div class="p-inner-right">
                                     <h2 class="property-title dd">
-                                        <a href="https://www.mylivingchoice.com/property/heritage-specialty-care/ ">{{$val['name']}}</a>
+                                        <a href="{{url('').'/properties-single/'.$val['id']}}">{{$val['name']}}</a>
                                     </h2>
                                     <div class="desc">
                                         @php
@@ -67,7 +71,25 @@
                         </div>
                     </div>
                     <div class="flex-container clearfix">
-                        <div class="pacakge-section"></div>
+                        @if($val['package'] == 'Gold')
+                            @php $color = '#EFB81C'; @endphp
+                        @elseif($val['package'] == 'Silver')
+                            @php $color = '#D3D3D3'; @endphp
+                        @elseif($val['package'] == 'Bronze')
+                            @php $color = '#C0340A'; @endphp
+                        @elseif($val['package'] == 'Platinum')
+                            @php $color = '#287495'; @endphp
+                        @elseif($val['package'] == 'Certified')
+                            @php $color = '#C0340A'; @endphp
+                        @else
+                            @php $color = '#FFFFFF'; @endphp
+                        @endif
+                        <div class="pacakge-section" style="margin: 0px !important">
+                            <span class="span-hexagon" style="color: {{$color}}">
+                                    &#x2B22; 
+                                    <img src="{{URL::asset('public/image/pakage_icon.png')}}" class="img-hexagon">
+                            </span>
+                        </div>
                         <div class="visit-website">
                             <div class="package_name">
                                 @if($val['package'] != 'No Plan')
@@ -115,6 +137,38 @@
         <a class="page-numbers next {{!empty($next_page)?'paginate_button pointer':'disabled not-allowed'}}" data-page="{{!empty($next_page)?$next_page:''}}">Next »</a>
     </div>
 </div>
+
+<style type="text/css">
+    .property-list-box{
+        /*border-right: 1px solid #DDD;*/
+    }
+    .pacakge-section{
+        /*border-right: 1px solid #DDD;   */
+    }
+    .property-info{
+        /*border-left: none;    */
+        border-right: 1px solid #DDD;
+    }
+    .visit-website {
+        /*margin-left: 1px;*/
+        /*border-left: none;   */
+    }
+    .span-hexagon{
+        font-size: 80px; 
+        position:absolute; 
+        margin-top: -15px; 
+        margin-left: -25px; 
+        /*margin-left: 80px;*/
+        line-height: 1 !important;
+    }
+    .img-hexagon{
+        height: 30px; 
+        width: 30px;
+        position: absolute;
+        margin-top: 25px;
+        margin-left: -47px;
+    }
+</style>
 
 <script type="text/javascript">
     $('.paginate_button').click(function(){

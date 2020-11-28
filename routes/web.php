@@ -84,10 +84,13 @@ Route::post('/contact-us','HomeController@postContactUs')->name('post-contact-us
 Route::get('/terms-of-service','HomeController@termsofservice')->name('terms-of-service');
 Route::get('/privacy-policy','HomeController@privacypolicy')->name('privacy-policy');
 
+Route::get('/search','HomeController@search');
+
 Route::get('/maptest','HomeController@maptest');
 Route::get('/maptest1','HomeController@maptest1');
 
 Route::get('/login','HomeController@login');
+Route::get('/forgotPassword','HomeController@forgotPassword');
 /*---------- END - Front Routes ----------*/
 
 /*---------- START - Extra Common routes ----------*/

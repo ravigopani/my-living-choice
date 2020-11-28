@@ -192,9 +192,7 @@
                         <div class="amentie_title">
                             <h2 class="heading-title">Location</h2>
                         </div>
-                        <div class="map">
-                            <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=1239%201st%20Ave%20SE%20D&amp;t=m&amp;z=10&amp;output=embed&amp;iwloc=near" aria-label="1239 1st Ave SE D"></iframe>
-                        </div>
+                        <div id="map"></div>
                     </div>
                 </div>
             </div>
@@ -272,4 +270,34 @@
             </div>
         </section>
     </div>
+    <style type="text/css">
+        #map {
+          height: 350px;
+          /* The height is 400 pixels */
+          width: 100%;
+          /* The width is the width of the web page */
+        }
+    </style>
+    <script type="text/javascript">
+        var latitude = parseFloat('{{$property['latitude']}}');
+        var longitude  = parseFloat('{{$property['longitude']}}');
+        console.log(latitude,longitude);
+        function initMap() {
+          // The location of Uluru
+          const uluru = { lat: latitude, lng: longitude };
+          // The map, centered at Uluru
+          const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 12,
+            center: uluru,
+          });
+          // The marker, positioned at Uluru
+          const marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+          });
+        }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB21RnJFbEed0ypqsqUSsQHukp_0LxgQuI&callback=initMap">
+    </script>
 @endsection

@@ -11,7 +11,7 @@
                             @if(!empty($care['care']) && !empty($city['city']))
                                 {{$care['care']}} in {{$city['city']}}
                             @else
-                                All Properties
+                                Property
                             @endif
                         </h1>
                     </div>

@@ -730,8 +730,8 @@
     <script type="text/javascript">
     	/* FOR ADDRESS AUTOCOMPLETE - START */
 
-    	const latitude = {{!empty($property->latitude) ? $property->latitude : 0}};
-    	const longitude = {{!empty($property->longitude) ? $property->longitude : 0}};
+    	const latitude = parseFloat('{{!empty($property->latitude) ? $property->latitude : 0}}');
+    	const longitude = parseFloat('{{!empty($property->longitude) ? $property->longitude : 0}}');
 
     	var address = (document.getElementById('search_location'));
         var autocomplete = new google.maps.places.Autocomplete(address);

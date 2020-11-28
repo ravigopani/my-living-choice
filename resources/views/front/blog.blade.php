@@ -62,12 +62,13 @@
                                         <h6 class="heading-title">Tags</h6>
                                     </div>
                                     <div class="tag_wrapper">
-                                        <a href="#" class="tag-cloud-link" aria-label="assisted living (3 items)">assisted living</a>
-                                        <a href="#" class="tag-cloud-link" aria-label="Kansas City (1 item)">Kansas City</a>
-                                        <a href="#" class="tag-cloud-link" aria-label="los angeles (1 item)">los angeles</a>
-                                        <a href="#" class="tag-cloud-link " aria-label="memory care (1 item)">memory care</a>
-                                        <a href="#" class="tag-cloud-link " aria-label="retirement centers (1 item)">retirement centers</a>
-                                        <a href="#" class="tag-cloud-link" aria-label="senior living (7 items)">senior living</a>
+                                        @if(!empty($tags))
+                                            @foreach($tags as $val)
+                                                <a href="{{url('').'/blog?tag='.$val['id']}}" class="tag-cloud-link" aria-label="{{$val['tag']}}">{{$val['tag']}}</a>
+                                            @endforeach
+                                        @else
+                                            <a href="javascript:void(0)" class="tag-cloud-link" aria-label="No Tags Found">No Tags Found...!!</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -94,6 +95,7 @@
                 url: BASE_URL+'blog-list-data',  // no base url required filename is includes baseurl.
                 data: {
                     search:search,
+                    tag: '{{$tag}}',
                     page:page
                 },
                 success: function (data) {

@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Common;
 use App\Blog;
+use App\Tag;
+use App\BLogTag;
 use DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-use Hash;
 
 class BlogController extends Controller
 {
@@ -56,7 +57,8 @@ class BlogController extends Controller
 
     public function create(Request $request)
     {
-        return view('admin.blog.add_edit');
+        $tags = Tag::where('status','A')->get()->toArray();
+        return view('admin.blog.add_edit',compact('tags'));
     }
 
     public function edit(Request $request,$id)
@@ -65,7 +67,9 @@ class BlogController extends Controller
         if(!$blog) {
             return back()->with(['status'=>'error','message'=>'Something went wrong.']);
         }
-        return view('admin.blog.add_edit',compact('blog'));
+        $tags = Tag::where('status','A')->get()->toArray();
+        $blog_tags = BLogTag::where('blog_id',$id)->get()->toArray();
+        return view('admin.blog.add_edit',compact('blog','tags','blog_tags'));
     }
 
     public function store(Request $request)
@@ -99,6 +103,14 @@ class BlogController extends Controller
         $result = Blog::saveBlog($save_data);
         if($result)
         {
+            if(!empty($request->tags))
+            {
+                foreach ($request->tags as $value) 
+                {
+                    BLogTag::saveBlogTag(['blog_id'=>$result['id'], 'tag_id'=>$value]);
+                }
+            }
+
             return redirect(\Config::get('constants.ADMIN_URL').'blog')->with(['status'=>'success','message'=>$result['message']]);
         }
         else
@@ -133,6 +145,35 @@ class BlogController extends Controller
 
         if($image_path  != ''){
             $save_data['image'] = $image_path;
+        }
+
+        $blog_tags = BlogTag::where('blog_id',$id)->get()->toArray();
+
+        $old_blog_tags = [];
+        if(!empty($blog_tags)){
+            foreach ($blog_tags as $key => $value) {
+                $old_blog_tags[] = $value['tag_id'];
+            }
+        }
+
+        $add_record = $delete_record = [];
+        $delete_record = array_diff($old_blog_tags,$request->tags);
+        $add_record = array_diff($request->tags,$old_blog_tags);
+
+        if(!empty($add_record))
+        {
+            foreach ($add_record as $value) 
+            {
+                $result = BlogTag::saveBlogTagWithExistCheck($id,$value);
+            }
+        }
+
+        if(!empty($delete_record))
+        {
+            foreach ($delete_record as $value) 
+            {
+                $result = BlogTag::deleteBlogTag($id,$value);
+            }
         }
 
         $result = Blog::saveBlog($save_data,$id);
